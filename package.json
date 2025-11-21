@@ -1,0 +1,12 @@
+{
+  "name": "preprocessors",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "sass --watch pre.scss pre.css",
+    "build": "sass pre.scss pre.css"
+  },
+  "devDependencies": {
+    "sass": "^1.94.0"
+  }
+}
