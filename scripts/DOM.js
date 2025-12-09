@@ -67,6 +67,70 @@ function switchAnimal() {
 
 // switchAnimal()
 
-switchBtn.addEventListener('click', () => {
-    switchAnimal()
+// switchBtn.addEventListener('click', (event) => {
+//     switchAnimal()
+//     console.log(event.target);
+// })
+
+switchBtn.addEventListener('click', switchAnimal)
+
+// switchBtn.removeEventListener('click',switchAnimal)
+
+
+
+// switchBtn.addEventListener('click', switchAnimal)
+
+const alertBtn = document.getElementById('test-btn2')
+
+alertBtn.onclick = () => {
+    alert('Второй способ навышивание обработчика')
+}
+
+function showAlert(){
+    alert('Показать алерт')
+}
+
+// setTimeout(showAlert, 3000)
+
+let timer = 0
+
+const intervalId = setInterval(tick, 1000)
+
+function tick() {
+   timer++
+   console.log(timer);
+   if(timer > 4){
+     clearInterval(intervalId)
+   }
+}
+
+console.log('Конец файла');
+
+const showBtn = document.querySelector('#showBtn')
+const slider = document.getElementById('slider')
+let isSliderVisible = false
+
+showBtn.addEventListener('click', () => {
+   slider.classList.toggle('hidden')
+   isSliderVisible = !isSliderVisible
+
+   if(!isSliderVisible){
+    showBtn.textContent = 'Показать слайдер'
+   } else {
+     showBtn.textContent = 'Скрыть слайдер'
+     getData()
+   }
 })
+
+function getData(){
+    fetch('https://rickandmortyapi.com/api/character')
+    .then((response) => {
+        return response.json()
+    })
+    .then((data)=> {
+        console.log(data);
+    })
+}
+
+
+
