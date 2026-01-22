@@ -90,28 +90,154 @@ class User2 {
 }
 
 const user2 = new User2('Alice')
-console.log(user2.name);
+// console.log(user2.name);
 user2.name = 'Ma'
-console.log(user2.name);
+// console.log(user2.name);
 
-console.log(Object.getPrototypeOf(user2));
+// console.log(Object.getPrototypeOf(user2));
 
-console.log(user2 instanceof User2);
+// console.log(user2 instanceof User2);
 
 const arr = ['max', 'alice', 'berik']
-arr.forEach((item) => {
-    console.log(item);
-})
+// arr.forEach((item, index, arr) => {
+//     console.log(item);
+// })
 
 Array.prototype.myMethod = function(func){
     const that = this
+
+    if(typeof func !== 'function'){
+        console.log('В аргумент передана не функция');
+
+        return
+    }
+
     for(let i=0; i < that.length; i++){
-        func(that[i], i)
+        func(that[i], i, that)
     }
 }
-arr.myMethod((item) => {
-    console.log(item);
-})
+// arr.myMethod((item) => {
+//     console.log(item);
+// })
+
+// Базовый класс (Родитель)
+
+const Swimmable = {
+     swim() { console.log(`${this.name} is swimming`); }
+};
+
+class Runner {
+    run(name){
+         console.log(`${name} is runnig.`);
+    }
+}
+class Character {
+    #speed = 5
+
+      constructor(name) {
+         this.name = name;
+         this.health = 50;
+      }
+
+    move() { 
+        console.log(`${this.name} is moving.`); 
+    }
+
+    heal(poitns){
+        let curHealth = this.health + poitns
+
+        if(curHealth >= 100){
+            curHealth = 100
+        }
+        this.health = curHealth
+    }
+
+    static getCharacter() {
+        console.log(this.health);
+        console.log('It is a character');
+    }
+}
+// Производный класс (Наследник)
+class Mage extends Character {
+    #SPELS = {
+        FIREBALL:'fireball',
+        FREEZ: 'freze wave'
+    }
+    #freezeDamage = 10
+    #fireDamage = 20
+
+    cast(typeOfCast) { 
+        let damage = 0
+
+        if(typeOfCast === this.#SPELS.FIREBALL){
+             damage = this.#fireDamage
+        }else if(typeOfCast === this.#SPELS.FREEZ){
+            damage = this.#freezeDamage
+        }
+
+        console.log(`${this.name} casts a ${typeOfCast} with damage ${damage}!`); 
+    }
+
+    getSpaels(){
+        return this.#SPELS
+    }
+}
+
+const merlin = new Mage("Merlin");
+
+merlin.move(); // Метод взят у
+merlin.heal(10)
+console.log(merlin.health);
+const spels = merlin.getSpaels()
+console.log(spels);
+
+merlin.cast(spels.FIREBALL)
+merlin.cast(spels.FREEZ)
+
+class Warrior extends Character {
+    #armor = 2
+
+    constructor(name, weapon){
+        super(name)
+        this.weapon = weapon
+        this.runnerClass = new Runner()
+    }
+
+   increaseArmor(){
+     this.#armor = 5
+     console.log('Броня повышена до', this.#armor) ;console.log();
+
+     setTimeout(this.#decreaseArmor.bind(this), 3000)
+   }
+
+   #decreaseArmor(){
+    this.#armor = 2
+    console.log('Броня снова равна', this.#armor);
+   }
+
+    attack(){
+        console.log(`${this.name} attack with ${this.weapon}!`); 
+    }
+
+    run(){
+        this.runnerClass.run(this.name)
+    }
+}
+
+Object.assign(Warrior.prototype, Swimmable)
+
+const conan = new Warrior('Conan', 'sword')
+
+conan.attack()
+
+conan.increaseArmor()
+
+conan.run()
+conan.swim()
+
+// Character.getCharacter()
+
+
 
 
 
