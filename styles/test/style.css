@@ -1,0 +1,30 @@
+.link {
+    padding: 10px;
+    background-color: aquamarine;
+}
+.span {
+    padding: 3px;
+    background-color: bisque;
+}
+
+.modal {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.262);
+}
+
+.modal__content{
+    background-color: white;
+    padding: 20px;
+}
+
+.hide {
+    display: none;
+}
+.blue {
+    font-weight: bold;
+    color: blue;
+}
