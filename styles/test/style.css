@@ -28,3 +28,21 @@
     font-weight: bold;
     color: blue;
 }
+
+.box {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: antiquewhite;
+    border-radius: 20px;
+
+    &:hover {
+        background-color: aliceblue;
+        cursor: pointer;
+    }
+}

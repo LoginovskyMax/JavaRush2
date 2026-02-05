@@ -7,12 +7,22 @@
     <link rel="stylesheet" href="styles/test/style.css">
 </head>
 <body>
-  
-
     <a href="https://www.google.com/" id="link" class="link"><span class="span">Google</span></a>
     <button id="show-btn">show modal</button>
 
-    <div id="modal" class="modal">
+    <div id="box" class="box">
+
+    </div>
+    <main class="main">
+        <input type="text" id="text">
+        <button type="button" id="btn">Отправить сообщение</button>
+        <button type="button" id="btn-close">Закрыть соединение</button>
+        <ul id="message">
+
+        </ul>
+    </main>
+
+    <!-- <div id="modal" class="modal">
        <div class="modal__content" id="modal-content">
         <button id="close-btn">close</button>
           <ul id="list">
@@ -24,9 +34,9 @@
       </div>
     </div>
 
-    <canvas id="canvas"></canvas>
+    <canvas id="canvas"></canvas> -->
  
-
-    <script src="./scripts/async.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+     <script src="./scripts/socket.js"></script>
 </body>
 </html>

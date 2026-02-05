@@ -4,9 +4,13 @@
   "private": true,
   "scripts": {
     "start": "sass --watch styles/style.scss styles/style.css",
-    "build": "sass pre.scss pre.css"
+    "build": "sass pre.scss pre.css",
+    "server": "node webSocketServer.js"
   },
   "devDependencies": {
     "sass": "^1.94.0"
+  },
+  "dependencies": {
+    "ws": "^8.19.0"
   }
 }
