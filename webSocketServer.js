@@ -20,7 +20,9 @@ function onConnect(client) {
 
             switch (parsed.type) {
                 case 'ECHO':
-                    client.send(`Я эхо, ${parsed.text}`);
+                    setTimeout(() => {
+                         client.send(`Я эхо, ${parsed.text}`);
+                    }, 1500)
                     break;
 
                 case 'PING':

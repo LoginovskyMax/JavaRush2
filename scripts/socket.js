@@ -63,7 +63,7 @@ const gen = idGenerator();
 const tags = ["js", "css", "js", "html", "css"];
 // Убираем дубликаты одной строкой
 const uniqueTags = new Set(tags);
-console.log(uniqueTags); // Set(3) { "js", "css", "html" }
+// console.log(uniqueTags); // Set(3) { "js", "css", "html" }
 
 uniqueTags.add('java')
 uniqueTags.add('js')
@@ -120,81 +120,117 @@ function getStorageData(key){
 
 sessionStorage.setItem(OBJ_KEY, objForStorage)
 
-
-
-console.log(getStorageData('123'));
+// console.log(getStorageData('123'));
 
 // console.log(localStorage.getItem(USER_ID));
 
 // localStorage.clear()
 
-const cleanArray = [...uniqueTags];
+// const cleanArray = [...uniqueTags];
 
-// const socket = new WebSocket('ws://localhost:8080')
+const socket = new WebSocket('ws://localhost:8080')
 
-// socket.onmessage = function (event){
-//     writeMessage(event.data)
-// }
-// socket.onopen = function () {
-//     socket.send(JSON.stringify({type:'PING'}))
-// }
-// socket.onerror = function(event) {
-//     console.error('WebSocket error:', event);
-//     console.log('Произошла ошибка WebSocket. Пожалуйста, попробуйте позже.');
-// };
-// socket.onclose = function(event) {
-//     console.log(event.code);
-//     console.log(event.reason);
-// };
+// const socket = new WebSocket("wss://javascript.info/article/websocket/demo/hello");
 
-// const inpText = document.querySelector('#text')
-// const btn = document.querySelector('#btn')
-// const btnClose = document.querySelector('#btn-close')
-// const messageList = document.querySelector('#message')
+socket.onmessage = function (event){
+    writeMessage(event.data)
+}
+socket.onopen = function () {
+    socket.send(JSON.stringify({type:'PING'}))
+}
+socket.onerror = function(event) {
+    console.error('WebSocket error:', event);
+    console.log('Произошла ошибка WebSocket. Пожалуйста, попробуйте позже.');
+};
+socket.onclose = function(event) {
+    console.log(event.code);
+    console.log(event.reason);
+};
 
-// btn.addEventListener('click', ()=> {
-//     if(!inpText.value){
-//         return
-//     }
-//     const message = {
-//         text: inpText.value,
-//         type: 'ECHO'
-//     }
-//     console.log('Размер буфера');
-//     console.log(socket.bufferedAmount);
-//     console.log( socket.readyState);
-//     socket.send(JSON.stringify(message))
-//     inpText.value = ''
-// })
-// btnClose.addEventListener('click', ()=> {
-//     socket.close(1000, 'Работа завершена')
-//     writeMessage('Соединение закрыто')
-// })
-// function writeMessage(text){
-//     const li = document.createElement('li')
-//     li.textContent = text
-//     messageList.appendChild(li)
-// }
+const input = document.getElementById('text')
+const sendBtn = document.getElementById('btn')
+const closeBtn = document.getElementById('btn-close')
+const list = document.getElementById('list')
 
-// if ('geolocation' in navigator) {
-//     navigator.geolocation.getCurrentPosition(
-//     (position) => {
-//     const { latitude, longitude } = position.coords;
-//     console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-//     },
-//     (error) => {
-//     console.error('Error getting geolocation:', error);
-//     },
-//     {
-//     enableHighAccuracy: true, // Высокая точность
-//     timeout: 5000, // Таймаут ожидания ответа (мс)
-//     maximumAge: 0
-//     // Максимальное время, в течение которого можно использовать кэшированные данные (мс)
-//     }
-//     );
-//     } else {
-//     console.log('Geolocation is not supported by this browser.');
-//     }
+const messageTypes = {
+    ECHO: 'ECHO',
+    PING: 'PING'
+}
+const userTypes = {
+    USER: 'user',
+    SERVER: 'server'
+}
+
+function sendMessage(){
+    if(!input.value){
+        console.log('value is empty');
+        return
+    }
+
+    const message = {
+        type: messageTypes.ECHO,
+        text: input.value
+    }
+
+    const validMessage = JSON.stringify(message)
+
+    writeMessage(input.value, userTypes.USER)
+
+    socket.send(validMessage)
+    input.value = ''
+}
+
+function writeMessage(message, userType){
+    const li = document.createElement('li')
+    li.textContent = message
+
+    if(userType === userTypes.USER){
+        li.classList.add('chat__user')
+    } else{
+        li.classList.add('chat__server')
+    }
+
+    li.classList.add('chat__message')
+
+    list.append(li)
+}
+
+sendBtn.addEventListener('click', sendMessage)
+
+closeBtn.addEventListener('click', () => {
+    socket.close(1000, 'Работа завершена')
+})
+
+
+if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(
+    (position) => {
+    const { latitude, longitude } = position.coords;
+    console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+    },
+    (error) => {
+    console.error('Error getting geolocation:', error);
+    },
+    {
+    enableHighAccuracy: true, // Высокая точность
+    timeout: 5000, // Таймаут ожидания ответа (мс)
+    maximumAge: 0
+    // Максимальное время, в течение которого можно использовать кэшированные данные (мс)
+    }
+    );
+    } else {
+    console.log('Geolocation is not supported by this browser.');
+    }
+
+// Notification.requestPermission().then(permission => {
+//    if (permission === "granted") {
+// // 2. Показ уведомления
+//       new Notification("Привет!", {
+//          body: "Пора сделать перерыв и размяться.",
+//          icon: "/icon.png"
+//      });
+//    }
+// });
 
 // const worker = new Worker('./scripts/worker.js')
 // console.log('Отправляем сообщение');
@@ -204,11 +240,16 @@ const cleanArray = [...uniqueTags];
 //     console.log(event.data);
 // }
 
-// const worker = new SharedWorker('./scripts/worker.js')
-// const port = worker.port
-// console.log('Отправляем сообщение');
-// port.postMessage('Hello from js port')
-// port.onmessage = function(event){
-//     console.log('onMeaasge');
-//     console.log(event.data);
+// function stopWorker() {
+//     worker.terminate()
+//     console.log('Worker terminated');
 // }
+
+const worker = new SharedWorker('./scripts/worker.js')
+const port = worker.port
+console.log('Отправляем сообщение');
+port.postMessage('Hello from js port')
+port.onmessage = function(event){
+    console.log('onMeaasge');
+    console.log(event.data);
+}

@@ -46,3 +46,30 @@
         cursor: pointer;
     }
 }
+
+.chat{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+
+    &:hover {
+         background-color: aliceblue;
+        cursor: pointer;
+    }
+
+    .chat__user {
+        background-color: antiquewhite;
+         align-self: flex-end;
+    }
+
+    .chat__server {
+        background-color: rgb(102, 182, 222);
+        align-self: flex-start;
+    }
+
+    .chat__message {
+        padding: 10px;
+        border-radius: 20px;
+    }
+}
