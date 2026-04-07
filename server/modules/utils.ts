@@ -3,10 +3,9 @@ import fs from 'fs'
 import { getPath } from './filePath.ts';
 import { colorLog } from './logger.ts';
 import path from 'node:path'
-import type { dataTypes } from '#types/index';
+import { dataTypes } from '#types/index';
 
-
-export function createData(type:dataTypes, data: unknown ) {
+export function createData<T>(type:dataTypes, data: T ) {
   return {
     type,
     data
@@ -71,22 +70,24 @@ export function copyFile(fileName: string, copyFileName: string) {
     stream.on('end', () => console.log('Запись файла завершено'));
 }
 
-export function readDir(dirName: string) {
-    fs.readdir(getPath(dirName),{ withFileTypes: true }, (err,data) => {
-     if(err){ throw err }
+export async function readDir(dirName: string) {
+  try {
+      const data = await fsPromises.readdir(getPath(dirName),{ withFileTypes: true })
+      
+      const filesArr:string[] = []
 
-    data.forEach(item=>{
-      if(item.isFile()){
-        let name = item.name.split('.')[0]
-        let ext = path.extname(item.name)
-        let index =  path.resolve(getPath(dirName),`./${item.name}`)
+      data.forEach(item=>{
+       if(item.isFile()){
+         let pathToFile =  path.resolve(getPath(dirName),`./${item.name}`)
 
-        fs.stat(index, (err,stats) => {
-          console.log('Имя файла: ' + name + '; Расширение : '+ ext + '; Размер : ' + stats.size +' байт;');
-        })
-      }
-    })
-})
+         filesArr.push(pathToFile)
+       }
+     })
+
+     return createData(dataTypes.SUCCESS, filesArr)
+  }catch(err){
+     return createData(dataTypes.ERROR, (err as { message: string })?.message || 'Failed read dir beans')
+  }
 }
 
 

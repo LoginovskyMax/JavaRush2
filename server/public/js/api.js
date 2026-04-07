@@ -4,93 +4,29 @@
 
 const API_BASE = 'http://localhost:3000/api';
 
-// MOCK DATA: Чтобы верстка работала без бэкенда
-const mockBeans = [
-    {
-        id: "1",
-        title: "Kayanza Natural",
-        country: "Burundi",
-        description: "Funky and wild. High intensity fruit notes often compared to red wine or cooked plums.",
-        imageUrl: "assets/flags/bi.svg", // Убедись, что картинка есть в папке
-        roasterComment: "We barely believe, but here`s natural Burundi not for all money in the world. Sweet, with tones of dried fruits and chocolate.",
-        details: {
-            process: "Natural",
-            region: "Kayanza",
-            variety: ["Red Bourbon"],
-            scaScore: 88.5
-        },
-        flavorProfile: {
-            notes: ["Plum", "Blueberry", "Red Wine"],
-            acidity: 6,
-            sweetness: 8,
-            bitterness: 3
-        },
-        recipes: [
-            {
-                method: "V60",
-                grindSize: "EK43 - 8.5",
-                waterTemp: 96,
-                doseIn: 18,
-                doseOut: 300,
-                timeTotal: "3:00",
-                steps: ["0:00 - Bloom 60g", "0:45 - Pour to 300g"]
-            },
-            {
-                method: "Espresso",
-                grindSize: "Mythos - 3.8",
-                waterTemp: 93,
-                doseIn: 18,
-                doseOut: 36,
-                timeTotal: "28s",
-                steps: []
-            }
-        ]
-    },
-    {
-        id: "2",
-        title: "Cerrado Mineiro",
-        country: "Brazil",
-        description: "Sweet, full-bodied coffee with low acidity. Perfect for milk drinks.",
-        imageUrl: "assets/flags/br.svg",
-        roasterComment: "A classic daily cup. Nutty and chocolatey.",
-        details: {
-            process: "Natural",
-            region: "Minas Gerais",
-            variety: ["Mundo Novo"],
-            scaScore: 82.5
-        },
-        flavorProfile: {
-            notes: ["Hazelnut", "Chocolate", "Caramel"],
-            acidity: 3,
-            sweetness: 8,
-            bitterness: 4
-        },
-        recipes: [
-            { method: "V60", grindSize: "9", waterTemp: 92, doseIn: 20, doseOut: 300, timeTotal: "3:00", steps: [] },
-            { method: "Espresso", grindSize: "4.2", waterTemp: 93, doseIn: 18, doseOut: 36, timeTotal: "28s", steps: [] }
-        ]
-    }
-];
-
 export const apiClient = {
     // 1. GET LIST
     async getAllBeans() {
-        // Имитация задержки сети
-        return new Promise(resolve => {
-            setTimeout(() => resolve(mockBeans), 300);
-        });
+        const res = await fetch(`${API_BASE}/beans`);
+        const response =  await res.json();
 
-        // КОГДА БУДЕТ БЭКЕНД, РАСКОММЕНТИРУЙ ЭТО:
-        // const res = await fetch(`${API_BASE}/beans`);
-        // return await res.json();
+        if(response.type === 'success'){
+            return response.data
+        } else {
+           return [];
+        }
     },
 
     // 2. GET DETAILS
     async getBeanById(id) {
-        return new Promise(resolve => {
-            const bean = mockBeans.find(b => b.id === id);
-            resolve(bean);
-        });
+        const res = await fetch(`${API_BASE}/beans/${id}`);
+        const response =  await res.json();
+
+        if(response.type === 'success'){
+            return response.data
+        } else {
+           return {};
+        }
     },
 
     // 3. CREATE
@@ -122,7 +58,5 @@ export const apiClient = {
         } else {
            return {};
         }
-        // Возвращаем пустой объект, пока нет бэкенда, чтобы не было ошибок 404
-
     }
 };
