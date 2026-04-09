@@ -16,10 +16,10 @@ export async function createFile(fileName: string, content: string){
   try{
    await fsPromises.writeFile(getPath(fileName), content)
 
-   colorLog('File created', 'green')
+   return createData(dataTypes.SUCCESS,  'File writtten')
   }catch(err){
-    console.log(err);
-  }
+    return createData(dataTypes.ERROR,  err)
+ }
 }
 
 export async function readDirSimple(dirName: string){

@@ -1,15 +1,18 @@
 import { getPath } from "#modules/filePath"
-import { createData, readDir } from "#modules/utils"
-import { dataTypes, type beanType, type SmallBeanType } from '#types/index';
+import { createData, createFile, readDir } from "#modules/utils"
+import { dataTypes, type BeanPath, type beanType, type SmallBeanType } from '#types/index';
 import fsPromises from 'fs/promises'
 import path from "node:path"
+import { v4 as uuidv4 } from 'uuid';
 import { title } from "node:process";
 import { promisify } from "node:util"
+import { DefaultRecipes } from "../constants/index.ts";
 
 
-async function getBeans() {
+async function getBeans(withPath = false) {
    const response = await readDir(path.join('data', 'beans'))
-   const allBeans:beanType[] = []
+   const allBeans:beanType[]  = []
+   const allBeansWithPath:BeanPath[]  = []
 
    if(response.type === dataTypes.ERROR){
       return response
@@ -19,16 +22,27 @@ async function getBeans() {
        for (const path of response.data){
              const bean = await fsPromises.readFile(path, 'utf-8')
 
-             allBeans.push(JSON.parse(bean))
+             const parsedBean = JSON.parse(bean) as beanType
+
+             if(withPath){
+                allBeansWithPath.push({
+                    id: parsedBean.id,
+                    path
+                })
+             } else {
+                allBeans.push(parsedBean)
+             }
         }
 
-        return  createData(dataTypes.SUCCESS, allBeans)
+        return  createData(dataTypes.SUCCESS, withPath ? allBeansWithPath :  allBeans)
       }catch(err){
         return createData(dataTypes.ERROR, (err as { message: string })?.message || 'Failed read some bean file')
       }
 }
 
-export function parseBeans(beansArr:beanType[]):SmallBeanType[]{
+
+
+function parseBeans(beansArr:beanType[]):SmallBeanType[]{
     return beansArr.map(bean => ({
         id: bean.id,
         title: bean.title,
@@ -37,7 +51,55 @@ export function parseBeans(beansArr:beanType[]):SmallBeanType[]{
     }))
 }
 
+function checkBeansData(bean:beanType) {
+    if(!bean.title) return createData(dataTypes.ERROR, 'Title is missing')
+
+    if(!bean.country) return createData(dataTypes.ERROR, 'Country is missing')
+
+    return createData(dataTypes.SUCCESS, 'All done')
+}
+
+function addRecipesAndId(bean:beanType) {
+    if(!bean.recipes || bean.recipes?.length === 0){
+        bean.recipes = DefaultRecipes
+    }
+
+    bean.id = uuidv4()
+
+    return bean
+}
+
+async function createBeanFile(bean:beanType){
+    const fileName = `${bean.details.region.toLowerCase()}-${bean.details.process.toLowerCase()}`
+
+    const response = await createFile(path.join('data', 'beans', `${fileName}.json`), JSON.stringify(bean, null, 2))
+
+    if(response.type === dataTypes.SUCCESS){
+        return createData(dataTypes.SUCCESS, { id: bean.id })
+    }
+
+     return response
+}
+
+async function removeBean(baensArr:BeanPath[], id: string) {
+    const bean = baensArr.find(item => item.id === id)
+
+    if(!bean) return createData(dataTypes.ERROR, `File with id:${id} not found`)
+
+    try {
+       await fsPromises.unlink(bean.path);
+
+       createData(dataTypes.SUCCESS, 'Rempved success')
+    }catch (err){
+      createData(dataTypes.ERROR, err)
+    }
+}
+
 export const beansService = {
    getBeans,
-   parseBeans
+   parseBeans,
+   checkBeansData,
+   addRecipesAndId,
+   createBeanFile,
+   removeBean
 }

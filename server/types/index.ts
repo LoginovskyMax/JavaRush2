@@ -41,3 +41,8 @@ export type beanType = {
 }
 
 export type SmallBeanType = Pick<beanType, 'id' | 'title' | 'description' | 'imageUrl'>
+
+export type BeanPath = {
+  id: string,
+  path: string
+}
