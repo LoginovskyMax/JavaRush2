@@ -28,6 +28,7 @@ export function renderBeanList(beans, onSelect) {
             item.classList.add('active');
             onSelect(bean.id);
         };
+        
         listContainer.appendChild(item);
     });
 }

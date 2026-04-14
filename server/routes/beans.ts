@@ -2,7 +2,6 @@ import express from 'express'
 import { beansService } from '#services/beansService'
 import { dataTypes, type BeanPath, type beanType } from '#types/index';
 import { createData } from '#modules/utils';
-import { log } from 'node:console';
 
 export const beansRouter = express.Router()
 
@@ -19,7 +18,6 @@ beansRouter.get('/', async (req, res) => {
 
 beansRouter.get('/:id', async (req, res) => {
     const id = req.params.id
-
     const response = await beansService.getBeans()
 
     if(response.type === dataTypes.ERROR) {
@@ -38,9 +36,7 @@ beansRouter.get('/:id', async (req, res) => {
 });
 
 beansRouter.post('/', async (req, res) => {
-
     const body = req.body as beanType
-
     const check = beansService.checkBeansData(body)
 
     if(check.type === dataTypes.ERROR) {
@@ -64,7 +60,6 @@ beansRouter.post('/', async (req, res) => {
 
 beansRouter.delete('/:id', async (req, res) => {
     const id = req.params.id
-
     const response = await beansService.getBeans(true)
 
     if(response.type === dataTypes.ERROR) {
@@ -78,4 +73,23 @@ beansRouter.delete('/:id', async (req, res) => {
     const statusCode = unlinkResponse?.type === dataTypes.ERROR ? 400 : 200
 
     res.status(statusCode).json(unlinkResponse)
+});
+
+beansRouter.put('/:id', async (req, res) => {
+
+    const id = req.params.id
+    const body = req.body
+    const response = await beansService.getBeans(true)
+
+    if(response.type === dataTypes.ERROR) {
+        res.status(400).json(response)
+
+        return
+    }
+
+    const updatedBeanResonse = await beansService.updateBean(response.data as BeanPath[], id, body)
+    
+    const statusCode = updatedBeanResonse?.type === dataTypes.ERROR ? 400 : 200
+
+    res.status(statusCode).json(updatedBeanResonse)
 });

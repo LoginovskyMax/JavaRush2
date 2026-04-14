@@ -26,7 +26,7 @@ async function getBeans(withPath = false) {
 
              if(withPath){
                 allBeansWithPath.push({
-                    id: parsedBean.id,
+                    bean: parsedBean,
                     path
                 })
              } else {
@@ -81,8 +81,8 @@ async function createBeanFile(bean:beanType){
      return response
 }
 
-async function removeBean(baensArr:BeanPath[], id: string) {
-    const bean = baensArr.find(item => item.id === id)
+async function removeBean(beansArr:BeanPath[], id: string) {
+    const bean = beansArr.find(item => item.bean.id === id)
 
     if(!bean) return createData(dataTypes.ERROR, `File with id:${id} not found`)
 
@@ -95,11 +95,34 @@ async function removeBean(baensArr:BeanPath[], id: string) {
     }
 }
 
+async function updateBean(beansArr:BeanPath[], id: string, body: beanType) {
+     const oldBean = beansArr.find(item => item.bean.id === id)
+
+     if(!oldBean) return createData(dataTypes.ERROR, `File with id:${id} not found`)
+
+     const recipes = oldBean.bean.recipes
+     const pathToFile = oldBean.path
+
+     const newBean = {
+        ...body,
+        recipes,
+        id
+     }
+
+    const response = await createFile(pathToFile, JSON.stringify(newBean, null, 2), true)
+
+    if(response.type === dataTypes.SUCCESS){
+        return createData(dataTypes.SUCCESS, 'FIle updated successfull')
+    }
+
+     return response
+}
 export const beansService = {
    getBeans,
    parseBeans,
    checkBeansData,
    addRecipesAndId,
    createBeanFile,
-   removeBean
+   removeBean,
+   updateBean
 }

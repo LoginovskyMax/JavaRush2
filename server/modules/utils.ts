@@ -12,9 +12,11 @@ export function createData<T>(type:dataTypes, data: T ) {
   }
 }
 
-export async function createFile(fileName: string, content: string){
+export async function createFile(fileName: string, content: string, isAbsolutePath = false){
   try{
-   await fsPromises.writeFile(getPath(fileName), content)
+   const path = isAbsolutePath ? fileName : getPath(fileName)
+
+   await fsPromises.writeFile(path, content)
 
    return createData(dataTypes.SUCCESS,  'File writtten')
   }catch(err){
