@@ -1,9 +1,10 @@
 import './App.css'
 import Counter from './components/Counter'
 import TestComponent from './components/test/TestCopmonent'
+import ReducerTest from './components/TestReducer/TestReducer'
+
 
 function App() {
-
   const greetings = 'Здравствуй'
 
   const getSum = () => {
@@ -19,6 +20,7 @@ function App() {
         </div>
         <TestComponent name={'Alice'} greetings={greetings} getSum={getSum}/>
         <Counter/>
+        <ReducerTest/>
       </main>
   )
 }
