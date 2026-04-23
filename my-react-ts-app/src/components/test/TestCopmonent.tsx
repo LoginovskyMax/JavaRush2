@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
+import Counter from "../Counter"
 
 type PropsType = {
   name: string,
@@ -51,6 +52,8 @@ function TestComponent({name, greetings = 'Привет', getSum}:PropsType) {
     fetchData()
   }, [])
 
+    console.log('rerender parent component');
+
     return(
         <div className="test">
             <p>random number = {getRandomNumber()}</p>
@@ -62,6 +65,7 @@ function TestComponent({name, greetings = 'Привет', getSum}:PropsType) {
                     <button onClick={() => deleteUser(user.id)}>Delete</button>
                     </li>)}
             </ul>
+            <Counter/>
          </div>
     )
 }

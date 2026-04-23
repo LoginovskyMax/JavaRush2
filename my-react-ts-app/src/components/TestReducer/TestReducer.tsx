@@ -1,4 +1,5 @@
 import {useReducer, type FC } from 'react'
+import { useTheme } from '../../hooks/useTheme'
 
 interface  IState {
     counter: number,
@@ -27,6 +28,7 @@ const reducer = (state:IState, action:IAction) => {
 }
 
 const ReducerTest:FC = () => {
+     const {theme} = useTheme()
     const [state, dispatch] = useReducer(reducer, {
         counter: 0,
         age: 20
@@ -53,6 +55,7 @@ const ReducerTest:FC = () => {
             <button onClick={incrementCount}>Повысить счетчик</button>
             <button onClick={deCrementCount}>Понизить счетчик</button>
             <button onClick={setAge}>Установить возраст</button>
+            <p>Текущая тема это - {theme}</p>
         </div>
     )
 }
