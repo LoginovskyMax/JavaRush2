@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useState } from "react"
 import Counter from "../Counter"
 
 type PropsType = {
@@ -27,6 +27,9 @@ const Users = [
 
 function TestComponent({name, greetings = 'Привет', getSum}:PropsType) {
     const [users, setUsers] = useState(Users)
+    const [usersLenght, setUsersLenght] = useState<number>(users.length)
+
+    const numbersArr = [1,2,3]
 
     const getRandomNumber = () => {
         // eslint-disable-next-line react-hooks/purity
@@ -34,6 +37,19 @@ function TestComponent({name, greetings = 'Привет', getSum}:PropsType) {
         
         return num
     }
+
+
+    const getUsersLenght = () => {
+        return users.length * 2
+    }
+
+    const memoGetUsers = useCallback(() => {
+        return getUsersLenght()
+    }, [])
+
+    const memoNumbersArr = useMemo(() => {
+        return numbersArr
+    }, [])
 
     const fetchData = async () => {
       const response = await fetch('someApi')
@@ -45,6 +61,7 @@ function TestComponent({name, greetings = 'Привет', getSum}:PropsType) {
     const newUsersArr = users.filter(user => user.id !== id)
 
     setUsers(newUsersArr)
+    // setUsersLenght(newUsersArr.length)
   }
 
   useEffect(() => {
@@ -65,7 +82,11 @@ function TestComponent({name, greetings = 'Привет', getSum}:PropsType) {
                     <button onClick={() => deleteUser(user.id)}>Delete</button>
                     </li>)}
             </ul>
-            <Counter/>
+            <Counter 
+               initialCounter={usersLenght} 
+               numbersArr={memoNumbersArr}
+               getUsersLenght={memoGetUsers}
+               />
          </div>
     )
 }

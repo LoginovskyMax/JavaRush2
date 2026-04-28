@@ -3,6 +3,8 @@ import './App.css'
 import TestComponent from './components/test/TestCopmonent'
 import ReducerTest from './components/TestReducer/TestReducer'
 import { ThemeContext, type Theme } from './contexts/Context'
+import ChildrenForHOC from './components/ChildrenForHOC/ChildrenForHOC'
+import AuthUser from './HOC/useAuth'
 
 
 function App() {
@@ -17,6 +19,7 @@ function App() {
     setTheme( currentTheme => currentTheme === 'light' ? 'dark' : 'light' )
   }
 
+  const WrappedCompoonent = AuthUser(ChildrenForHOC)
 
   return (
       <main 
@@ -30,6 +33,7 @@ function App() {
         </div> */}
         <ThemeContext.Provider value={{changeTheme, theme}}>
             <TestComponent name={'Alice'} greetings={greetings} getSum={getSum}/>
+            <WrappedCompoonent name='Zhan'/> 
             {/* <ReducerTest/> */}
         </ThemeContext.Provider>
       </main>
