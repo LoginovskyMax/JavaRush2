@@ -1,6 +1,6 @@
 import { useState, type FC } from "react"
 
-const AuthUser = (Component:FC<{name:string}>):React.ComponentType<{name:string}> => {
+function AuthUser<T extends object>(Component:React.ComponentType<T>):FC<T>{
    const [auth, setAuth] = useState(false)
   
    if(!auth) {
@@ -14,5 +14,6 @@ const AuthUser = (Component:FC<{name:string}>):React.ComponentType<{name:string}
 
    return (props) => <Component {...props} />
 }
+
 
 export default AuthUser

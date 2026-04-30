@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import './App.css'
 import TestComponent from './components/test/TestCopmonent'
-import ReducerTest from './components/TestReducer/TestReducer'
 import { ThemeContext, type Theme } from './contexts/Context'
 import ChildrenForHOC from './components/ChildrenForHOC/ChildrenForHOC'
 import AuthUser from './HOC/useAuth'
+import LogIn from './components/LogIn/LogIn'
+import UncontrolForm from './components/UncontrolForm/UnconrolForm'
 
 
 function App() {
@@ -34,6 +35,8 @@ function App() {
         <ThemeContext.Provider value={{changeTheme, theme}}>
             <TestComponent name={'Alice'} greetings={greetings} getSum={getSum}/>
             <WrappedCompoonent name='Zhan'/> 
+            <LogIn/>
+            <UncontrolForm/>
             {/* <ReducerTest/> */}
         </ThemeContext.Provider>
       </main>
