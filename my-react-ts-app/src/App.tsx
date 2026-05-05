@@ -6,6 +6,7 @@ import ChildrenForHOC from './components/ChildrenForHOC/ChildrenForHOC'
 import AuthUser from './HOC/useAuth'
 import LogIn from './components/LogIn/LogIn'
 import UncontrolForm from './components/UncontrolForm/UnconrolForm'
+import FormikForm from './components/FormicForm/FormikForm'
 
 
 function App() {
@@ -35,8 +36,7 @@ function App() {
         <ThemeContext.Provider value={{changeTheme, theme}}>
             <TestComponent name={'Alice'} greetings={greetings} getSum={getSum}/>
             <WrappedCompoonent name='Zhan'/> 
-            <LogIn/>
-            <UncontrolForm/>
+            <FormikForm/>
             {/* <ReducerTest/> */}
         </ThemeContext.Provider>
       </main>

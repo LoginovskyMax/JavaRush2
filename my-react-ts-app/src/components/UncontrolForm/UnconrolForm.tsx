@@ -24,7 +24,7 @@ function UncontrolForm() {
     }
 
     return(
-        <div className="test">
+        <div className="test"> 
            <h2>Log In Uncontrol</h2>
            <form 
               onSubmit={(e) => showFormData(e)}
