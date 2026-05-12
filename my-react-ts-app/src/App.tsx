@@ -7,6 +7,7 @@ import AuthUser from './HOC/useAuth'
 import LogIn from './components/LogIn/LogIn'
 import UncontrolForm from './components/UncontrolForm/UnconrolForm'
 import FormikForm from './components/FormicForm/FormikForm'
+import CounterStore from './components/CounterStore/CounterStore'
 
 
 function App() {
@@ -34,11 +35,13 @@ function App() {
           <p>{ getSum() }</p>
         </div> */}
         <ThemeContext.Provider value={{changeTheme, theme}}>
+            
             <TestComponent name={'Alice'} greetings={greetings} getSum={getSum}/>
             <WrappedCompoonent name='Zhan'/> 
             <FormikForm/>
             {/* <ReducerTest/> */}
         </ThemeContext.Provider>
+        <CounterStore />
       </main>
   )
 }

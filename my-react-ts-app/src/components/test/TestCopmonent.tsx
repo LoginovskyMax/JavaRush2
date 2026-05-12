@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react"
 import Counter from "../Counter"
+import { useAppSelector } from "../../store/storeHooks"
 
 type PropsType = {
   name: string,
@@ -28,6 +29,7 @@ const Users = [
 function TestComponent({name, greetings = 'Привет', getSum}:PropsType) {
     const [users, setUsers] = useState(Users)
     const [usersLenght, setUsersLenght] = useState<number>(users.length)
+    const counterStore = useAppSelector((state) => state.counter)
 
     const numbersArr = [1,2,3]
 
@@ -74,6 +76,7 @@ function TestComponent({name, greetings = 'Привет', getSum}:PropsType) {
     return(
         <div className="test">
             <p>random number = {getRandomNumber()}</p>
+            <p>Global age = {counterStore.age}</p>
             <p>{greetings} {name}</p>
             <p>{getSum()}</p>
             <ul>
