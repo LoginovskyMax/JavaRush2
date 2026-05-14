@@ -8,6 +8,7 @@ import LogIn from './components/LogIn/LogIn'
 import UncontrolForm from './components/UncontrolForm/UnconrolForm'
 import FormikForm from './components/FormicForm/FormikForm'
 import CounterStore from './components/CounterStore/CounterStore'
+import Characters from './components/Characters/Characters'
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
             {/* <ReducerTest/> */}
         </ThemeContext.Provider>
         <CounterStore />
+        <Characters />
       </main>
   )
 }
