@@ -9,6 +9,7 @@ import UncontrolForm from './components/UncontrolForm/UnconrolForm'
 import FormikForm from './components/FormicForm/FormikForm'
 import CounterStore from './components/CounterStore/CounterStore'
 import Characters from './components/Characters/Characters'
+import Pokemon from './components/Pokemon/Pokemon'
 
 
 function App() {
@@ -42,8 +43,9 @@ function App() {
             <FormikForm/>
             {/* <ReducerTest/> */}
         </ThemeContext.Provider>
-        <CounterStore />
-        <Characters />
+        {/* <CounterStore />
+        <Characters /> */}
+        <Pokemon />
       </main>
   )
 }
