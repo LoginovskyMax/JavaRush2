@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import type { ICharacter } from '../../types';
 
 interface ICharactersState {
-    characters: Array<{image: string, name: string, id: number}>,
+    characters: Array<ICharacter>,
     isLoading: boolean,
     currentPage: number,
     totalPages: number

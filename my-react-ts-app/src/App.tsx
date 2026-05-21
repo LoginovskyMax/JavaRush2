@@ -1,51 +1,28 @@
-import { useState } from 'react'
 import './App.css'
-import TestComponent from './components/test/TestCopmonent'
-import { ThemeContext, type Theme } from './contexts/Context'
-import ChildrenForHOC from './components/ChildrenForHOC/ChildrenForHOC'
-import AuthUser from './HOC/useAuth'
-import LogIn from './components/LogIn/LogIn'
-import UncontrolForm from './components/UncontrolForm/UnconrolForm'
+import { Route, Routes } from 'react-router-dom'
+import MainPage from './pages/Main/Main'
+import PokemonPage from './pages/Pokemon/PokemonPage'
+import Header from './components/Header/Header'
+import RickPage from './pages/Rick/RickPage'
+import CharacterPage from './pages/Character/CharacterPage'
 import FormikForm from './components/FormicForm/FormikForm'
-import CounterStore from './components/CounterStore/CounterStore'
-import Characters from './components/Characters/Characters'
-import Pokemon from './components/Pokemon/Pokemon'
+import LogIn from './components/LogIn/LogIn'
 
 
 function App() {
-  const [theme, setTheme] = useState<Theme>('light')
-  const greetings = 'Здравствуй'
-
-  const getSum = () => {
-    return 6 * 10
-  }
-
-  const changeTheme = () => {
-    setTheme( currentTheme => currentTheme === 'light' ? 'dark' : 'light' )
-  }
-
-  const WrappedCompoonent = AuthUser(ChildrenForHOC)
-
   return (
-      <main 
-        className={theme === 'light' ? 'main--light' : 'main--dark'}
-        id="center"
-        >
-        {/* <div >
-          <h1>Get started</h1>
-          
-          <p>{ getSum() }</p>
-        </div> */}
-        <ThemeContext.Provider value={{changeTheme, theme}}>
-            
-            <TestComponent name={'Alice'} greetings={greetings} getSum={getSum}/>
-            <WrappedCompoonent name='Zhan'/> 
-            <FormikForm/>
-            {/* <ReducerTest/> */}
-        </ThemeContext.Provider>
-        {/* <CounterStore />
-        <Characters /> */}
-        <Pokemon />
+      <main id="center">
+        <Header />
+        <Routes>
+          <Route path='/' element={ <MainPage />} />
+          <Route path='/pokemon' element={ <PokemonPage/>}>
+            <Route path='form' element={<FormikForm/>} />
+            <Route path='login' element={<LogIn/>} />
+          </Route>
+          <Route path='/rick' element={ <RickPage/>} />
+          <Route path='/character/:id' element={<CharacterPage/>} />
+
+        </Routes>
       </main>
   )
 }
