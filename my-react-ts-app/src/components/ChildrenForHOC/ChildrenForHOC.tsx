@@ -5,7 +5,7 @@ type PropsType = {
 
 function ChildrenForHOC({name}:PropsType) {
     return(
-        <div className="test">
+        <div className="test-comp">
             <p>ChildrenForHOC</p>
             <p>Props name: {name}</p>
          </div>

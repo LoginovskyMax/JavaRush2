@@ -40,7 +40,6 @@ function TestComponent({name, greetings = 'Привет', getSum}:PropsType) {
         return num
     }
 
-
     const getUsersLenght = () => {
         return users.length * 2
     }
@@ -74,7 +73,7 @@ function TestComponent({name, greetings = 'Привет', getSum}:PropsType) {
     console.log('rerender parent component');
 
     return(
-        <div className="test">
+        <div className="test-comp">
             <p>random number = {getRandomNumber()}</p>
             <p>Global age = {counterStore.age}</p>
             <p>{greetings} {name}</p>

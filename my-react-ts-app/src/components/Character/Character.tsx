@@ -22,7 +22,7 @@ function Character({character}:PropsType) {
  
 return (
     <div className="character" onClick={goToCharacterPage}>
-        <img src={character.image} />
+        <img loading="lazy" src={character.image} />
         <p>ID: {character.id}</p>
         <p>Name: {character.name}</p>
     </div>

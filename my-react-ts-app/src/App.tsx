@@ -1,12 +1,13 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
-import MainPage from './pages/Main/Main'
-import PokemonPage from './pages/Pokemon/PokemonPage'
+const MainPage = lazy(() => import('./pages/Main/Main'))
+const PokemonPage = lazy(() => import('./pages/Pokemon/PokemonPage'))
+const RickPage = lazy(() => import('./pages/Rick/RickPage'))
+const CharacterPage = lazy(() => import('./pages/Character/CharacterPage'))
 import Header from './components/Header/Header'
-import RickPage from './pages/Rick/RickPage'
-import CharacterPage from './pages/Character/CharacterPage'
 import FormikForm from './components/FormicForm/FormikForm'
 import LogIn from './components/LogIn/LogIn'
+import { lazy } from 'react'
 
 
 function App() {

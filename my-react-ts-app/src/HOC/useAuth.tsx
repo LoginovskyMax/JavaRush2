@@ -1,7 +1,7 @@
 import { useState, type FC } from "react"
 
 function AuthUser<T extends object>(Component:React.ComponentType<T>):FC<T>{
-   const [auth, setAuth] = useState(false)
+   const [auth, setAuth] = useState(true)
   
    if(!auth) {
     return () => {
