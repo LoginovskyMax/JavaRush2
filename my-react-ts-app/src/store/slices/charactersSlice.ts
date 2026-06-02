@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { ICharacter } from '../../types';
+import type { ICharacter, ICharacterResponse } from '../../types';
+import axios from 'axios';
 
 interface ICharactersState {
     characters: Array<ICharacter>,
@@ -19,14 +20,24 @@ const initialState:ICharactersState = {
 export const fetchCharacters = createAsyncThunk(
     'fetchCharacters',
     async (pageNumber: number | undefined = 1) => {
-      const response = await fetch(`https://rickandmortyapi.com/api/character/?page=${pageNumber}`)
-      const data = await response.json()
+      // const response = await fetch(`https://rickandmortyapi.com/api/character/?page=${pageNumber}`)
+      // const data: ICharacterResponse = await response.json()
+      try{
+          const response = await axios.get<ICharacterResponse>(`https://rickandmortyapi.com/api/character`, {
+            params: {
+              page: pageNumber
+            }
+           })
 
-      await new Promise((res) => {
-        setTimeout(() => res(true), 2000)
-      })
+          await new Promise((res) => {
+            setTimeout(() => res(true), 2000)
+          })
 
-      return data
+          return response.data
+      } catch(err){
+           console.log((err as {response: object}).response );
+           return {} as ICharacterResponse
+      }
     }
 )
 

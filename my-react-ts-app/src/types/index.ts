@@ -3,3 +3,17 @@ export interface ICharacter {
     image: string;
     name: string;
 }
+
+export interface IResponseInfo {
+count: number;
+next: string | null;
+pages: number;
+prev : string | null;
+}
+
+
+
+export interface ICharacterResponse {
+    results: [ICharacter];
+    info: IResponseInfo;
+}
