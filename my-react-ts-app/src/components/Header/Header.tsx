@@ -6,6 +6,7 @@ function Header(){
          <Link to="/">Главная</Link> | 
          <Link to="/pokemon">Покемоны</Link> | 
          <Link to="/rick">рик и Морти</Link> | 
+         <Link to="/apollo">Аполло</Link> | 
         </div>
     )
 }

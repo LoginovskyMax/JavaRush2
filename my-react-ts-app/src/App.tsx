@@ -8,6 +8,7 @@ import Header from './components/Header/Header'
 import FormikForm from './components/FormicForm/FormikForm'
 import LogIn from './components/LogIn/LogIn'
 import { lazy } from 'react'
+import ApolloPage from './pages/ApolloPage/ApolloPage'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path='login' element={<LogIn/>} />
           </Route>
           <Route path='/rick' element={ <RickPage/>} />
+          <Route path='/apollo' element={ <ApolloPage/>} />
           <Route path='/character/:id' element={<CharacterPage/>} />
 
         </Routes>

@@ -17,3 +17,7 @@ export interface ICharacterResponse {
     results: [ICharacter];
     info: IResponseInfo;
 }
+
+export interface IGQLCharacterResponse {
+    characters: ICharacterResponse
+}
