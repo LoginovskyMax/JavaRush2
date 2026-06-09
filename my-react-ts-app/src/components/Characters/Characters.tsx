@@ -18,7 +18,7 @@ function Characters() {
         // if(!characters.length) {
         //     dispatch(fetchCharacters())
         // }
-        getData('https://rickandmortyapi.com/api/character', { page: 1 })
+        getData('character', { page: 1 })
     }, [])
 
     return (

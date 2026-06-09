@@ -9,6 +9,7 @@ import FormikForm from './components/FormicForm/FormikForm'
 import LogIn from './components/LogIn/LogIn'
 import { lazy } from 'react'
 import ApolloPage from './pages/ApolloPage/ApolloPage'
+import AuthPage from './pages/Auth/Auth'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           </Route>
           <Route path='/rick' element={ <RickPage/>} />
           <Route path='/apollo' element={ <ApolloPage/>} />
+          <Route path='/auth' element={ <AuthPage/>} />
           <Route path='/character/:id' element={<CharacterPage/>} />
 
         </Routes>

@@ -21,3 +21,11 @@ export interface ICharacterResponse {
 export interface IGQLCharacterResponse {
     characters: ICharacterResponse
 }
+
+export interface IUser {
+  id: string;
+  email: string;
+  name: string;
+}
+
+export const TOKEN = 'auth_token'

@@ -1,5 +1,5 @@
-import axios from "axios"
 import { useState } from "react"
+import { apiClient } from "../utils/axios"
 
 function useApi<T>(){
     const [isLoading, setIsLoading] = useState(false)
@@ -11,7 +11,7 @@ function useApi<T>(){
         setError('')
 
          try{
-          const response = await axios.get<T>(url, { params })
+          const response = await apiClient.get<T>(url, { params })
 
           await new Promise((res) => {
             setTimeout(() => res(true), 2000)
@@ -21,6 +21,7 @@ function useApi<T>(){
 
           
       } catch(err){
+          console.log(err);
           const axiosErr = (err as {response: { data: string }}).response.data
 
           setError(axiosErr)
