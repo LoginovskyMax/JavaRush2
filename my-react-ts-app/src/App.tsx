@@ -13,9 +13,13 @@ import AuthPage from './pages/Auth/Auth'
 
 
 function App() {
+  const changeTheme = () => {
+    console.log('Вызов функции внутри компонента');
+  }
+  
   return (
       <main id="center">
-        <Header />
+        <Header changeTheme={changeTheme}/>
         <Routes>
           <Route path='/' element={ <MainPage />} />
           <Route path='/pokemon' element={ <PokemonPage/>}>
