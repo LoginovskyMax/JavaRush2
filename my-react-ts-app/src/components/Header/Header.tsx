@@ -9,10 +9,10 @@ function Header({changeTheme}){
 
     return (
         <div data-testid='header'>
-         <p>Заголовок сайта</p>
+         <p data-testid='title'>Заголовок сайта</p>
          <Link to="/">Главная</Link> | 
          <Link to="/pokemon">Покемоны</Link> | 
-         <Link to="/rick">рик и Морти</Link> | 
+         <Link data-testid='rick-page-btn' to="/rick">рик и Морти</Link> | 
          <Link to="/apollo">Аполло</Link> | 
 
          {isAuthenticated ? <button onClick={logout}>Выйти</button> : <Link to="/auth">Войти</Link>}

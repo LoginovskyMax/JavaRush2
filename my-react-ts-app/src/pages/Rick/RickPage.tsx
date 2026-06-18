@@ -7,11 +7,11 @@ function RickPage() {
      const {isAuthenticated} = useAuth()
       const navigate = useNavigate()
 
-     useEffect(() => {
-        if(!isAuthenticated){
-            navigate('/auth')
-        }
-     },[])
+    //  useEffect(() => {
+    //     if(!isAuthenticated){
+    //         navigate('/auth')
+    //     }
+    //  },[])
 
     return (
         <div >

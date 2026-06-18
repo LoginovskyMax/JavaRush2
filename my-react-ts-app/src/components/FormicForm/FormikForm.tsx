@@ -3,9 +3,11 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import './index.css'
 import { useAuth } from '../../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 
 function FormikForm() {
+    const navigate = useNavigate()
     const {login} = useAuth()
 
     const schema = Yup.object().shape({
@@ -35,6 +37,7 @@ function FormikForm() {
         }
 
         login(userData.token, userData.user)
+        navigate('/')
     }
 
     return(
