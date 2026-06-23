@@ -1,15 +1,13 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
-const MainPage = lazy(() => import('./pages/Main/Main'))
 const PokemonPage = lazy(() => import('./pages/Pokemon/PokemonPage'))
 const RickPage = lazy(() => import('./pages/Rick/RickPage'))
 const CharacterPage = lazy(() => import('./pages/Character/CharacterPage'))
 import Header from './components/Header/Header'
-import FormikForm from './components/FormicForm/FormikForm'
-import LogIn from './components/LogIn/LogIn'
 import { lazy } from 'react'
 import ApolloPage from './pages/ApolloPage/ApolloPage'
 import AuthPage from './pages/Auth/Auth'
+import HomePage from './pages/HomePage/HomePage'
 
 
 function App() {
@@ -21,10 +19,8 @@ function App() {
       <main id="center">
         <Header changeTheme={changeTheme}/>
         <Routes>
-          <Route path='/' element={ <MainPage />} />
+          <Route path='/' element={ <HomePage />} />
           <Route path='/pokemon' element={ <PokemonPage/>}>
-            <Route path='form' element={<FormikForm/>} />
-            <Route path='login' element={<LogIn/>} />
           </Route>
           <Route path='/rick' element={ <RickPage/>} />
           <Route path='/apollo' element={ <ApolloPage/>} />

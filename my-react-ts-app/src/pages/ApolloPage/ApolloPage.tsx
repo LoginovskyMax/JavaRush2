@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client/react"
 import { gql } from "@apollo/client"
-import Loader from "../../components/Loader/Loader"
-import Character from "../../components/Character/Character"
+// import Loader from "../../components/Loader/Loader"
+// import Character from "../../components/Character/Character"
 import type { IGQLCharacterResponse } from "../../types"
 import { useState } from "react"
 
@@ -59,9 +59,9 @@ function ApolloPage() {
           <button onClick={createCharacter}>Create</button>
           {error && <p>Error:  {error ? error?.message : 'error' } </p>}
           <div className='characters'>
-            {loading && <Loader />}
+            {/* {loading && <Loader />}
                 
-            {data && data.characters.results.map(item => <Character character={item} key={item.id} />)}
+            {data && data.characters.results.map(item => <Character character={item} key={item.id} />)} */}
           </div>
         </div>
     )

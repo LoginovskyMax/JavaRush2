@@ -1,5 +1,5 @@
 import {useReducer, type FC } from 'react'
-import { useTheme } from '../../hooks/useTheme'
+import { useTheme } from '../../../hooks/useTheme'
 
 interface  IState {
     counter: number,

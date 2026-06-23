@@ -29,3 +29,8 @@ export interface IUser {
 }
 
 export const TOKEN = 'auth_token'
+
+export type CityType = {
+    name: string,
+    code: string
+}
