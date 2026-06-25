@@ -5,11 +5,17 @@ import { indianRailwayStations } from "../../constants/cities"
 type props = {
     title: string
     isActive: boolean
+    city: CityType
+    setCity: React.Dispatch<React.SetStateAction<CityType>>
 }
 
 
-function CityInput({title, isActive}:props) {
-    const [city, setCity] = useState<CityType>({name: '', code: ''})
+function CityInput({
+    title, 
+    isActive,
+    city,
+    setCity
+}:props) {
     const [findCities, setFindCities] = useState<CityType[]>([])
 
 
@@ -34,7 +40,7 @@ function CityInput({title, isActive}:props) {
     }
 
     return (
-        <div >
+        <div>
          <label htmlFor={title}>{title}</label>
          <input 
            type='text' 

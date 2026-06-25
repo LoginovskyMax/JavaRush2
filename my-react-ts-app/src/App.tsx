@@ -8,6 +8,7 @@ import { lazy } from 'react'
 import ApolloPage from './pages/ApolloPage/ApolloPage'
 import AuthPage from './pages/Auth/Auth'
 import HomePage from './pages/HomePage/HomePage'
+import BookingProcess from './pages/BookingProcess/BookingProcess'
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Header changeTheme={changeTheme}/>
         <Routes>
           <Route path='/' element={ <HomePage />} />
+          <Route path='/booking-process' element={ <BookingProcess />} />
           <Route path='/pokemon' element={ <PokemonPage/>}>
           </Route>
           <Route path='/rick' element={ <RickPage/>} />
