@@ -34,11 +34,32 @@ export type CityType = {
     code: string
 }
 
+export type TrainInfo = {
+    departure:{
+        day: string,
+        time: string,
+        city: string
+    },
+    arrival: {
+        day: string,
+        time: string,
+        city: string
+    },
+}
+
 export type TrainType = {
-    price: number,
-    id: string,
+    id: number,
     name: string,
-    place: number
+    info: TrainInfo,
+    railcars: RailcarType[]
+}
+
+export type RailcarType = {
+    available: number,
+    reserved:boolean,
+    name: string,
+    price: number,
+    tarife: string
 }
 
 export type PassengerType = {
@@ -55,15 +76,24 @@ export type FoodType = {
     counter: number,
 }
 
+export type TicketTrainType = {
+    id: number,
+    name: string,
+    info: TrainInfo,
+    railcar: RailcarType
+}
+
 export type TicketType = {
     passengers: number,
     departureCity: CityType,
     arrivalCity: CityType,
     depatureDay: string,
     arrivalDay: string,
-    train?: TrainType[],
+    train?: TicketTrainType,
     passengersData?: PassengerType[]
     food?: FoodType[]
     extraBaggage?: boolean,
     promoCode?: number
 }
+
+// export type TicketValue =  typeof TicketType[keyof typeof TicketType]

@@ -9,6 +9,7 @@ import ApolloPage from './pages/ApolloPage/ApolloPage'
 import AuthPage from './pages/Auth/Auth'
 import HomePage from './pages/HomePage/HomePage'
 import BookingProcess from './pages/BookingProcess/BookingProcess'
+import ReviewPage from './pages/ReviePage/ReviewPage'
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Routes>
           <Route path='/' element={ <HomePage />} />
           <Route path='/booking-process' element={ <BookingProcess />} />
+          <Route path='/review-page' element={ <ReviewPage/>} />
           <Route path='/pokemon' element={ <PokemonPage/>}>
           </Route>
           <Route path='/rick' element={ <RickPage/>} />

@@ -8,6 +8,11 @@ interface ITicketsState {
     totalPrice: number
 }
 
+export interface IPayload {
+    value: TicketType[keyof TicketType],
+    key: string
+}
+
 
 const initialState:ITicketsState = {
     tickets: null,
@@ -22,18 +27,18 @@ const ticketsSlice = createSlice({
         setTickets: (state, action: PayloadAction<TicketType>) => {
             state.tickets = action.payload
         },
-        addToTickets: (state, action: PayloadAction<TicketType>) => {
+        addToTickets: (state, action: PayloadAction<IPayload>) => {
             const newTickets = {
                 ...state.tickets,
-                ...action.payload
+                [action.payload.key] : action.payload.value
             }
-            state.tickets = newTickets
+            state.tickets = newTickets as TicketType
         },
 
     }
 })
 
-export const { setTickets } = ticketsSlice.actions
+export const { setTickets, addToTickets } = ticketsSlice.actions
 
 export default ticketsSlice.reducer
 
