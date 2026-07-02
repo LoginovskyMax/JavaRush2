@@ -93,7 +93,14 @@ export type TicketType = {
     passengersData?: PassengerType[]
     food?: FoodType[]
     extraBaggage?: boolean,
-    promoCode?: number
+    promoCode?: string
 }
 
-// export type TicketValue =  typeof TicketType[keyof typeof TicketType]
+export type PriceType = {
+    tikets: number,
+    food: number,
+    baggage: number,
+    discount?: number,
+    total?: number
+}
+
