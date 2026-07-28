@@ -104,3 +104,9 @@ export type PriceType = {
     total?: number
 }
 
+export type TaskType = {
+    id: number,
+    name: string,
+    isDone: boolean,
+}
+

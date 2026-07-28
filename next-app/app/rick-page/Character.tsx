@@ -22,7 +22,7 @@ function clickHandler(){
     }
  
 return (
-    <div data-testid={character.id} className="character" onClick={clickHandler}>
+    <div data-testid={character.id} className="character" onClick={goToCharacterPage}>
         <Image 
             src={character.image} 
             width={300} 

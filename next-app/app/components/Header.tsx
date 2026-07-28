@@ -1,10 +1,14 @@
+'use client'
 
-export default async function Header() {
+import UserBlock from "./UserBlock"
 
 
+
+export default function Header() {
     return (
-        <section className="flex items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+        <section className="flex items-center justify-center gap-20 bg-zinc-50 font-sans dark:bg-black">
             <p>Main header</p>
+            <UserBlock />
         </section>
     )
 }

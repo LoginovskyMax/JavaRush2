@@ -1,0 +1,12 @@
+// import { NextResponse } from 'next/server'
+// import type { NextRequest } from 'next/server'
+export { default } from "next-auth/middleware"
+ 
+// This function can be marked `async` if using `await` inside
+// export function proxy(request: NextRequest) {
+//   return NextResponse.redirect(new URL('/', request.url))
+// }
+ 
+export const config = {
+  matcher: '/rick-page',
+}
