@@ -62,7 +62,6 @@ const ticketsSlice = createSlice({
       
             const discountPrice = (sale/100) * total 
 
-             console.log(discountPrice);
             newPrice = {
                 ...newPrice,
                 discount:discountPrice,

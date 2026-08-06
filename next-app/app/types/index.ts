@@ -26,6 +26,13 @@ export interface Iproduct {
         description: string
 }
 
+export interface ICartProduct {
+    totalPrice: number,
+    product: Iproduct,
+    quanity: number,
+    id: number
+}
+
 export type IBarleysResponse = Iproduct[]
 
 

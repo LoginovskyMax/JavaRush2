@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Providers from "./components/Proveders";
+import StoreProvider from "./store/storeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,8 +25,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  console.log('in server component', process.env.GITHUB_ID);
-  console.log('in server component',process.env.NEXT_PUBLIC_KEY)
   return (
     <html
       lang="en"
@@ -35,7 +34,9 @@ export default function RootLayout({
          <Providers>
             <Header/>
          </Providers>
-        {children}
+         <StoreProvider>
+           {children}
+         </StoreProvider>
         </body>
     </html>
   );
