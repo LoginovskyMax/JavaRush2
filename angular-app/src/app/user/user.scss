@@ -1,0 +1,14 @@
+.user {
+    &__text {
+        color: red;
+    }
+
+    &__active {
+       background-color: bisque;
+       padding: 5px 10px;
+    }
+
+    &__highlight {
+        font-style: oblique;
+    }
+}

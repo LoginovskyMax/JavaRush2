@@ -1,0 +1,18 @@
+
+@if(users.length){
+<ul>
+    @for(user of users; track user.id){
+      <li>
+        <app-user-item 
+           [user]="user"
+           (userDeleted)="removeUser($event)"
+        >
+        </app-user-item>
+      </li>
+    } @empty {
+        <li>Список пуст</li>
+    }
+</ul>
+}
+
+

@@ -1,0 +1,32 @@
+<section class="user">
+  <p class="user__text">user works!</p>
+  <p>{{ getTitle() }}</p>
+  <p>{{ otherName}}</p>
+  <div [ngClass]="{
+       'user__active': status === 'active',
+       'user__highlight': isImportant
+    }">
+    Элемент с динамическими классами
+    </div>
+
+    <p [ngStyle]="{
+      'color': status === 'active' ? 'red' : 'green',
+      'font-weight': isImportant ? 'bold' : 'normal',
+      'font-size.px': fontSize
+}">Текст уведомления
+</p>
+
+  <p>{{age < 18 ? 'несовершеннолетний' : 'Совершеннолетний' }}</p>
+  <img [src]="carSrc" width="200" />
+
+  <button (click)="clickHandler()">Click me</button>
+  <input 
+     type="text" 
+     (input)="onInput($event)"
+     [value]="userName"
+     />
+  <input 
+     type="text" 
+     [(ngModel)]="otherName"
+     />
+</section>
