@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { User } from "../user/user";
 import { UserItem } from "../user-item/user-item";
+import { UserAuth } from '../services/user-auth';
+import { iUser } from '../types/auth';
 
 interface IUser {
    id: number;
@@ -19,6 +21,17 @@ export class UsersList {
     { id: 2, name: 'Алиса' },
     { id: 3, name: 'Иван' },
   ];
+
+  currentUser:iUser | null = null
+
+  isAuth = false
+
+  constructor(private authService:UserAuth){}
+
+  getUser(){
+     this.currentUser = this.authService.getUserData()
+     console.log(this.currentUser);
+  }
 
   removeUser(id: number){
      console.log(id);
