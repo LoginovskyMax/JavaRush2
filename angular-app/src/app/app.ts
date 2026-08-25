@@ -3,16 +3,18 @@ import { RouterOutlet } from '@angular/router';
 import { User } from './user/user';
 import { Header } from "./header/header";
 import { UsersList } from './users-list/users-list';
+import { BookingForm } from "./booking-form/booking-form";
 
 
 @Component({
   selector: 'app-root',
   imports: [
     RouterOutlet,
-    User, 
-    Header, 
-    UsersList
-  ],
+    User,
+    Header,
+    UsersList,
+    BookingForm
+],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

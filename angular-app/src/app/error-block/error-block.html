@@ -1,0 +1,13 @@
+        
+    @if(inputNode()?.invalid && (inputNode()?.dirty || inputNode()?.touched)){
+        @if(inputNode()?.errors?.['required']){
+         <div >
+            {{inputName()}} обязательно для заполнения.
+          </div>
+        }
+        @if(inputNode()?.errors?.['minlength']){
+          <div>
+            {{inputName()}} должно содержать не менее 3 символов.
+           </div>
+        }
+     }

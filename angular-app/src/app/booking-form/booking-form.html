@@ -1,0 +1,43 @@
+<p>Form</p>
+<form 
+   #bookingForm="ngForm"
+   (ngSubmit)="submitForm(bookingForm)"
+   >
+    <input 
+        name="userName" 
+        (input)="showInput()"
+        [(ngModel)]="formData.name"
+        required
+        minlength="3"
+        #username="ngModel"
+        />
+
+    <app-error-block 
+      [inputNode]="username"
+      [inputName]="'Имя'"
+      ></app-error-block>
+        
+    <input 
+        name="phone" 
+        [(ngModel)]="formData.phone"
+        required
+        minlength="12"
+         #phone="ngModel"
+        />
+      <app-error-block 
+      [inputNode]="phone"
+      [inputName]="'Телефон'"
+      ></app-error-block>
+
+    <button type="submit" [disabled]="bookingForm.invalid">Отправить форму</button>
+</form>
+
+<pre>{{ bookingForm.value | json }}</pre>
+
+<button (click)="submitForm(bookingForm)">Отправить форму</button>
+
+<button 
+   type="button" 
+   (click)="changeName()"
+   >Изменить имя
+   </button>
