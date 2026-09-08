@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { UserAuth } from '../services/user-auth';
-import { iUser } from '../types/auth';
 import { AuthSignalService } from '../services/auth-signal-service';
 
 @Component({

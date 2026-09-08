@@ -1,0 +1,14 @@
+<p>rick-pipe works!</p>
+
+@if ( data$ | async; as data) {
+<ul>
+    @for(character of data?.results; track character.id){
+      <li>
+          name : {{character.name}}
+      </li>
+    } @empty {
+        <li>Список пуст</li>
+    }
+</ul>
+}
+

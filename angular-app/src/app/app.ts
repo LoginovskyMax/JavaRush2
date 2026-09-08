@@ -4,7 +4,8 @@ import { User } from './user/user';
 import { Header } from "./header/header";
 import { UsersList } from './users-list/users-list';
 import { BookingForm } from "./booking-form/booking-form";
-
+import { RickPage } from './rick-page/rick-page';
+import { RickPipe } from './rick-pipe/rick-pipe';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,9 @@ import { BookingForm } from "./booking-form/booking-form";
     User,
     Header,
     UsersList,
-    BookingForm
+    BookingForm,
+    RickPage,
+    RickPipe
 ],
   templateUrl: './app.html',
   styleUrl: './app.scss'

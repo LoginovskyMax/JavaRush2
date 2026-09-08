@@ -1,0 +1,13 @@
+<p>rick-page works!</p>
+
+@if(data?.results){
+<ul>
+    @for(character of data?.results; track character.id){
+      <li>
+          name : {{character.name}}
+      </li>
+    } @empty {
+        <li>Список пуст</li>
+    }
+</ul>
+}
