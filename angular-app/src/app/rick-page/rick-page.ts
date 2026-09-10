@@ -2,10 +2,12 @@ import { Component, inject } from '@angular/core';
 import { RickApi } from '../services/rick-api';
 import { Subscription } from 'rxjs';
 import { IRickApi } from '../types/auth';
+import { RickPipe } from "../rick-pipe/rick-pipe";
+import { Router, RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-rick-page',
-  imports: [],
+  imports: [RickPipe, RouterLink],
   templateUrl: './rick-page.html',
   styleUrl: './rick-page.scss',
 })
@@ -15,6 +17,11 @@ export class RickPage {
   isLoading = true;
   error: string | null = null;
   private usersSub: Subscription | null = null;
+  private router = inject(Router);
+
+  goToPage(id:number){
+    this.router.navigate([`/character/${id}`])
+  }
 
   ngOnInit(){
     this.usersSub = this.rickService.fetchRickApi().subscribe({

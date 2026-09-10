@@ -1,0 +1,9 @@
+<p>login works!</p>
+<p>{{ !isAuth ? 'Not auth' : 'Is auth'}}</p>
+   <button type="button" (click)="authFunc()">Зарегистрироваться</button>
+
+   @if(isAuth){
+     <p>Зареган</p>
+   } @else {
+     <p>Не Зареган</p>
+   }

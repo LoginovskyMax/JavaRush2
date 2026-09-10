@@ -24,4 +24,8 @@ export class UserAuth {
   getUserData(){
     return this.userData
   }
+
+  isLoggedIn(){
+    return this.isAuth
+  }
 }

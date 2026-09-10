@@ -2,37 +2,14 @@ import { Component } from '@angular/core';
 import { UserAuth } from '../services/user-auth';
 import { UserData } from '../user-data/user-data';
 import { AuthSignalService } from '../services/auth-signal-service';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [UserData],
+  imports: [UserData, RouterLink, RouterLinkActive],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
 export class Header {
-  isAuth = false
-
-  constructor(private authService:UserAuth, private signalUserSevice:AuthSignalService){
-    this.isAuth = this.authService.isAuth
-  }
-
-  authFunc(){
-    console.log('Зарегистрировался');
-    this.authService.logIn()
-    this.authService.setUserData({
-      id: 1,
-      name: 'Alice',
-      email: 'some@mail.com'
-    })
-    this.isAuth = this.authService.isAuth
-
-    this.signalUserSevice.setUserData(
-      {
-      id: 1,
-      name: 'Alice',
-      email: 'some@mail.com'
-    }
-    )
-  }
 
 }

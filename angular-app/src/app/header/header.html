@@ -1,14 +1,20 @@
 <div>
    <p>header</p>
-   <p>{{ !isAuth ? 'Not auth' : 'Is auth'}}</p>
-   <button type="button" (click)="authFunc()">Зарегистрироваться</button>
-
-   @if(isAuth){
-     <p>Зареган</p>
-   } @else {
-     <p>Не Зареган</p>
-   }
-
+    <ul>
+    <li>
+      <a
+        routerLink="/"
+        routerLinkActive="active-nav-link"
+      >Главная</a>
+    </li>
+    <li>
+      <a
+        routerLink="/rick"
+        [queryParams]="{ query: 'angular', page: 2 }"
+        routerLinkActive="active-nav-link"
+      >Страница Рика и морти</a>
+    </li>
+  </ul>
    <app-user-data></app-user-data>
 </div>
 

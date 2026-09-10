@@ -5,9 +5,11 @@
     @for(character of data?.results; track character.id){
       <li>
           name : {{character.name}}
+          <button (click)="goToPage(character.id)">Подробнее</button>
       </li>
     } @empty {
         <li>Список пуст</li>
     }
 </ul>
 }
+<app-rick-pipe></app-rick-pipe>
