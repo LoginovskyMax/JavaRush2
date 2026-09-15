@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-import { UserAuth } from '../services/user-auth';
 import { UserData } from '../user-data/user-data';
-import { AuthSignalService } from '../services/auth-signal-service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-
 @Component({
   selector: 'app-header',
   imports: [UserData, RouterLink, RouterLinkActive],
@@ -11,5 +8,26 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './header.scss',
 })
 export class Header {
-
+ links = [
+  {
+    name: 'Products',
+    path: '/'
+  },
+    {
+    name: 'Pain Guides',
+    path: '/guides'
+  },
+      {
+    name: 'Community',
+    path: '/community'
+  },
+        {
+    name: 'Resources',
+    path: '/resources'
+  },
+          {
+    name: 'Contact',
+    path: '/contact'
+  }
+]
 }

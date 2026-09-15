@@ -1,0 +1,13 @@
+@if ( product$ | async; as data) {
+    <div class="product">
+    <img [src]="data?.image" class="product__image" />
+    <p class="product__title">{{data?.title}}</p>
+     <p class="product__price">{{data?.price}}</p>
+      <p class="product__descr">{{data?.desc}}</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Obcaecati deleniti ad itaque debitis cumque asperiores incidunt!
+         Hic veritatis aliquid facere ad deleniti impedit deserunt.
+         Quisquam dicta culpa maiores possimus consequuntur!
+        </p>
+</div>
+}

@@ -1,16 +1,24 @@
-import { Component } from '@angular/core';
-import { User } from '../user/user';
-import { UsersList } from '../users-list/users-list';
-import { BookingForm } from '../booking-form/booking-form';
+import { Component, inject } from '@angular/core';
+import { Product } from '../services/product';
+import { ProductType } from '../types/products';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
+import { ProductCard } from '../product-card/product-card';
 
 @Component({
   selector: 'app-home-page',
   imports: [
-    User,
-    UsersList,
-    BookingForm,
+    AsyncPipe,
+    ProductCard
   ],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
 })
-export class HomePage {}
+export class HomePage {
+  productService = inject(Product)
+  products$: Observable<ProductType[]> | null = null;
+
+  ngOnInit(){
+    this.products$ = this.productService.getProducts()
+  }
+}

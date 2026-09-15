@@ -1,4 +1,11 @@
-<p>home-page works!</p>
-  <app-user></app-user>
-  <app-users-list></app-users-list>
-  <app-booking-form></app-booking-form>
+
+@if ( products$ | async; as data) {
+<div class="product-list">
+     @for(product of data; track product.id){
+       <app-product-card [product]="product" class="product-list__item"></app-product-card>
+    } @empty {
+        <li>Продукты не загрузились</li>
+    }
+</div>
+
+}

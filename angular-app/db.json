@@ -1,0 +1,89 @@
+ {
+  "peppers": [
+    {
+      "id": "1",
+      "title": "The Abyss - Pure Evil Extract",
+      "image": "peper1.png",
+      "desc": "One drop 77 is a crime. Use with cautio",
+      "price": 40
+    },
+    {
+      "id": "2",
+      "title": "'Why Did I Do This?' Hot Salt",
+      "image": "peper2.png",
+      "desc": "A salty, crunchy path to pure regret",
+      "price": 16.2
+    },
+    {
+      "id": "3",
+      "title": "Five-Alarm Chili Starter Kit",
+      "image": "peper3.png",
+      "desc": "For questioning all your life choices",
+      "price": 19.55
+    },
+    {
+      "id": "4",
+      "title": "Satan's Kiss Chilies",
+      "image": "peper4.png",
+      "desc": "Cute round peppers with a cruel punch",
+      "price": 9.55
+    },
+    {
+      "id": "5",
+      "title": "The Unforgiving Hot Sauce",
+      "image": "peper5.png",
+      "desc": "Made with scorpion peppers and spite",
+      "price": 16.89
+    },
+    {
+      "id": "6",
+      "title": "Deceptively Mild Ancho Powder",
+      "image": "peper6.png",
+      "desc": "Smoky, gentle, and full of lies",
+      "price": 19.55
+    },
+    {
+      "id": "7",
+      "title": "Whole Carolina Reapers (10-pack)",
+      "image": "peper7.png",
+      "desc": "A bag full of painful mistakes",
+      "price": 9.99
+    },
+    {
+      "id": "8",
+      "title": "Crybaby's Cayenne Sauce",
+      "image": "peper8.png",
+      "desc": "A classic way to learn your lesson",
+      "price": 5.55
+    },
+    {
+      "id": "91",
+      "title": "Satan's Lollipops (3-pack)",
+      "image": "peper9.png",
+      "desc": "The sweetest suffering on a stick",
+      "price": 7.77
+    },
+    {
+      "id": "10",
+      "title": "Ghost Pepper Powder",
+      "image": "peper10.png",
+      "desc": "A lingering heat that will haunt you",
+      "price": 6.66
+    },
+    {
+      "id": "11",
+      "title": "Mango Habanero Mercy Sauce",
+      "image": "peper11.png",
+      "desc": "Lures you in with sweetness, then bitesk",
+      "price": 17.2
+    },
+    {
+      "id": "12",
+      "title": "Trinidad Scorpion Venom",
+      "image": "peper5.png",
+      "desc": "A blistering sting you won't forget",
+      "price": 13.13
+    }
+  ]
+}
+ 

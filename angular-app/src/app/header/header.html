@@ -1,20 +1,15 @@
-<div>
-   <p>header</p>
-    <ul>
-    <li>
-      <a
-        routerLink="/"
-        routerLinkActive="active-nav-link"
-      >Главная</a>
-    </li>
-    <li>
-      <a
-        routerLink="/rick"
-        [queryParams]="{ query: 'angular', page: 2 }"
-        routerLinkActive="active-nav-link"
-      >Страница Рика и морти</a>
-    </li>
-  </ul>
-   <app-user-data></app-user-data>
+<div class="header">
+   <p>The Scoville Inferno </p>
+    <ul class="header__links">
+      @for(link of links; track link.path){
+      <li class="header__link-item">
+        <a
+          [routerLink]="link.path"
+         >
+        {{link.name}}
+      </a>
+      </li>
+    }
+</ul>
 </div>
 

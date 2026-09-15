@@ -1,0 +1,14 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 40px;
+
+    &__links {
+        display: flex;
+        gap: 20px
+    }
+
+    &__link-item {
+        
+    }
+}
