@@ -1,0 +1,14 @@
+<p>Basket</p>
+@if ( baskerService.basket| async; as data){
+    @for(product of data; track product.id){
+       <app-basket-product 
+           [product]="product" 
+           (minus)="minusProduct($event)"
+           (plus)="plusProduct($event)"
+           (remove)="removeProduct($event)"
+           class="product-list__item"
+        
+           />
+    }
+}
+

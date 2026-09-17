@@ -5,3 +5,8 @@ export type ProductType = {
       desc: string,
       price: string
 }
+
+export type BasketProductType = {
+      totalPrice: number,
+      amount: number,
+} & ProductType

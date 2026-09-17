@@ -1,0 +1,13 @@
+<p>basket-product</p>
+<div class="product">
+    <img [src]="product?.image" class="product__image" />
+    <p class="product__title">{{product?.title}}</p>
+     <p class="product__price">{{product?.totalPrice}}</p>
+      <p class="product__descr">{{product?.desc}}</p>
+      <div class="product__btns-box">
+        <button class="product__btn" (click)="minusProduct()">-</button>
+        <span>{{product?.amount}}</span>
+         <button class="product__btn" (click)="plusProduct()">+</button>
+      </div>
+      <button (click)="removeProduct()">Remove</button>
+</div>

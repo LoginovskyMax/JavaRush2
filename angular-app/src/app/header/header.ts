@@ -26,8 +26,8 @@ export class Header {
     path: '/resources'
   },
           {
-    name: 'Contact',
-    path: '/contact'
+    name: 'Basket',
+    path: '/basket'
   }
 ]
 }

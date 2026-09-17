@@ -4,6 +4,7 @@ import { ProductType } from '../types/products';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { Basket } from '../services/basket';
 
 @Component({
   selector: 'app-product-page',
@@ -13,6 +14,7 @@ import { AsyncPipe } from '@angular/common';
 })
 export class ProductPage {
   productService = inject(Product)
+  baskerService = inject(Basket)
   product$: Observable<ProductType> | null = null;
   private route = inject(ActivatedRoute);   
   id:string | null = null
