@@ -29,6 +29,7 @@ export default function TabLayout() {
           <Stack.Screen name='Home'/>
           <Stack.Screen name='Explore'/>
           <Stack.Screen name='About'/>
+          <Stack.Screen name='Rick'/>
        </Stack>
       <AnimatedSplashOverlay />
     </ThemeProvider>

@@ -17,6 +17,7 @@ export default function HomeScreen() {
        </View>
        <Link href={'/about'}>About</Link>
        <Link href={'/explore'}>Explore</Link>
+       <Link href={'/rick'}>Rick</Link>
 
       </SafeAreaView>
     </ThemedView>
