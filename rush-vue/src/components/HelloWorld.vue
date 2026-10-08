@@ -1,17 +1,33 @@
 <script setup lang="ts">
-defineProps<{
-  msg: string
+import {ref, computed} from 'vue'
+
+const {
+  msg,
+  name = 'Default name'
+} = defineProps<{
+  msg: string,
+  name?: string
 }>()
+
+const emit = defineEmits(['change-text'])
+
+const bigMessage = computed(() => msg.toUpperCase() )
+
+function onClick(){
+  console.log('log');
+  const secretData = '1234'
+  emit('change-text', secretData)
+}
 </script>
 
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
+    <h1 class="green">{{ bigMessage }}</h1>
     <h3>
-      You’ve successfully created a project with
-      <a href="https://vite.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
+      Hello World component
+      {{ name }}
     </h3>
+    <button @click="onClick">Событие для родителя</button>
   </div>
 </template>
 
