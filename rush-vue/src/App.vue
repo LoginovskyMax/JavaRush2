@@ -1,12 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import {onMounted} from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
-
-function onChangetext(data: string) {
-  console.log('Прочитали в родителе', data);
-}
-
 
 onMounted(() => {
     // setInterval(() => {
@@ -27,10 +21,6 @@ onMounted(() => {
       </nav>
     </div>
   </header>
-  <HelloWorld 
-     msg="Props from App"
-     @change-text="onChangetext"
-    ></HelloWorld>
 
   <RouterView />
 </template>

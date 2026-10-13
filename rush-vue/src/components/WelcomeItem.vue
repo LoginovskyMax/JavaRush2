@@ -7,7 +7,9 @@
       <h3>
         <slot name="heading"></slot>
       </h3>
-      <slot></slot>
+      <div class="slot-3">
+        <slot></slot>
+      </div>
     </div>
   </div>
 </template>

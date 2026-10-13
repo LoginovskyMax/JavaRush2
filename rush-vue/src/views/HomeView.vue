@@ -4,6 +4,7 @@ import TheWelcome from '../components/TheWelcome.vue'
 
 <template>
   <main>
+    <p v-color-comp="'red'">Home view</p>
     <TheWelcome />
   </main>
 </template>

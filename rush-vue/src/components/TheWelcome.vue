@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import {ref, computed} from 'vue'
+import { useRouter } from 'vue-router'
 const mytext = ref('Alice')
 const htmlCode = '<span>Some text</span>'
+const router = useRouter()
 
 const counter = ref(0)
 const price = ref(167)
@@ -26,11 +28,20 @@ function decrement() {
 function clickLink(){
   console.log('link to');
 }
+
+function onUserClick(user:string){
+  router.push({
+    path: `/user/${user}`,
+    query: {
+      source: 'main-page'
+    }
+  })
+}
 </script>
 
 <template>
   <div>
-          <p >{{mytext.toUpperCase()}}</p>
+      <p v-color-comp="'blue'">{{mytext.toUpperCase()}}</p>
 
       <p>{{ 5 > 4 ? ' yes' : 'no'}}</p>
       <p
@@ -42,7 +53,10 @@ function clickLink(){
         Заглушка
       </div>
       <div v-for='(user, index) in users' :key='user'>
-         <p>name: {{index + 1}}-{{user}}</p>
+         <p 
+           @click="onUserClick(user)"
+           class="link-item"
+           >name: {{index + 1}}-{{user}}</p>
       </div>
       <button @click='increment'>+</button>
       <button @keyup.space='decrement()'>-</button>
@@ -65,3 +79,13 @@ function clickLink(){
         <label for="showInput">  Показать текст </label>
   </div>
 </template>
+
+<style lang="css" scoped>
+.link-item{
+  color: green;
+  &:hover {
+    cursor: pointer;
+    color: red;
+  }
+}
+</style>

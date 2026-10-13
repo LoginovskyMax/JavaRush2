@@ -1,6 +1,17 @@
+<script setup lang="ts">
+import HelloWorld from '@/components/HelloWorld.vue';
+
+function onChangetext(data: string) {
+  console.log('Прочитали в родителе', data);
+}
+</script>
+
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+      <HelloWorld
+     msg="Props from App"
+     @change-text="onChangetext"
+    ></HelloWorld>
   </div>
 </template>
 
