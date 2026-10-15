@@ -1,23 +1,21 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import {onMounted} from 'vue'
+import { useCounterStore } from './stores/counter';
+const store = useCounterStore()
 
-onMounted(() => {
-    // setInterval(() => {
-    //       counter.value++
-    //   }, 1000)
-})
 
 </script>
 
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <p>Main counter = {{ store.count }}</p>
 
-    <div class="wrapper">
+    <div class="wrapper" id="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/rick-page">Rick Page</RouterLink>
       </nav>
     </div>
   </header>
